@@ -19,6 +19,7 @@ namespace Offsets
 	
 	namespace Misc {
 		constexpr uintptr_t FPSValue[] = { 0x00339A88 };
+		constexpr uintptr_t ViewMatrix[] = { 0x0038DEFC };
 		constexpr uintptr_t JumpFromFPS[] = { 0x0023588F };
 	}
 }

@@ -1,7 +1,7 @@
 #pragma once
-#include "..\Structs\Vector3.h"
-#include "..\Utils\ReadHelper.cpp"
-#include "..\Utils\Offsets.h"
+#include "..\..\Structs\Vector3.h"
+#include "..\..\Utils\ReadHelper.cpp"
+#include "..\..\Utils\Offsets.h"
 #include <iostream>
 
 namespace Game
@@ -11,7 +11,7 @@ namespace Game
 	private:
 		uintptr_t _base;
 
-		Vector3 Position;
+		Vector4 *Position;
 		int LocationID;
 		int WorldID;
 		int GBucks;
@@ -21,6 +21,7 @@ namespace Game
 		int Tier;
 		int CurrentQuest;
 	public:
+		Player();
 		Player(uintptr_t base);
 
 		// Updaters
@@ -30,7 +31,7 @@ namespace Game
 		bool UpdateStoryProgress();
 
 		// Getters
-		Vector3 getPosition();
+		Vector4* getPosition();
 		int getLocationID();
 		int getWorldID();
 		int getGBucks();

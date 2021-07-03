@@ -2,8 +2,8 @@
 #include <Windows.h>
 #include <iostream>
 #include <string>
-
 #include "../Structs/Vector3.h"
+#include "../Structs/Vector4.h"
 
 class ReadHelper
 {
@@ -11,18 +11,16 @@ public:
 	static std::string ReadString(int offset)
 	{
 		std::string str = "";
-		int prevByte = NULL;
 
 		while (true)
 		{
-			const char byte = (char)(*(uintptr_t*)((int)offset++));
+			const char byte = *(char*)offset++;
 
-			if (byte == NULL && prevByte == NULL)
+			if (byte == NULL)
 				return str;
 
 			if (byte != NULL)
 				str += byte;
-			prevByte = byte;
 		}
 	}
 
@@ -38,8 +36,20 @@ public:
 		return addr;
 	}
 
-	static Vector3 ReadVector3(uintptr_t addr, const uintptr_t offsets[], int size) {
-		Vector3 vec;
+	static int* ReadPointer(int addr, const uintptr_t offsets[], int size)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (addr + offsets[i] >= 0xFFFFFFF) return NULL;
+			if (addr != NULL) addr = *(int*)(addr + offsets[i]);
+			if (addr >= 0xFFFFFFF) return NULL;
+		}
+
+		return &addr;
+	}
+
+	static Vector3* ReadVector3(uintptr_t addr, const uintptr_t offsets[], int size) {
+		Vector3* vec = (Vector3*)0x0;
 
 		for (int i = 0; i < size - 1; i++)
 		{
@@ -49,11 +59,23 @@ public:
 		}
 
 		if (addr != NULL)
+			vec = reinterpret_cast<Vector3*>(addr + 0x18);
+
+		return vec;
+	}
+
+	static Vector4* ReadVector4(uintptr_t addr, const uintptr_t offsets[], int size) {
+		Vector4* vec = (Vector4*)0x0;
+
+		for (int i = 0; i < size - 1; i++)
 		{
-			vec.x = *(float*)(addr + offsets[size - 1]);
-			vec.y = *(float*)(addr + offsets[size - 1] + 0x04);
-			vec.z = *(float*)(addr + offsets[size - 1] + 0x08);
+			if (addr + offsets[i] >= 0xFFFFFFF) return vec;
+			if (addr != NULL) addr = *(uintptr_t*)(addr + offsets[i]);
+			if (addr >= 0xFFFFFFF) return vec;
 		}
+
+		if (addr != NULL)
+			vec = reinterpret_cast<Vector4*>(addr + 0x18);
 
 		return vec;
 	}

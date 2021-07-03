@@ -1,16 +1,14 @@
 #pragma once
-
-class Vector3
+struct Vector3
 {
-public:
-	Vector3();
-	Vector3(float xCoord, float yCoord, float zCoord);
+	float x = 0;
+	float y = 0;
+	float z = 0;
+};
 
-	float x;
-	float y;
-	float z;
-
-	void Set(float xCoord, float yCoord, float zCoord);
-	bool isNull();
+struct Vector2
+{
+	float x = 0;
+	float y = 0;
 };
 

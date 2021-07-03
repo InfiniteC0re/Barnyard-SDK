@@ -1,0 +1,29 @@
+﻿  ScriptingAPI.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Utils\ReadHelper.cpp(17,1): warning C4312: приведение типов: преобразование из "int" в "char *" большего размера
+  AHUD.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\AHUD.cpp(17,71): warning C4312: приведение типов: преобразование из "int" в "int *" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\AHUD.cpp(17,102): warning C4312: приведение типов: преобразование из "int" в "void *" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\AHUD.cpp(22,65): warning C4312: приведение типов: преобразование из "int" в "void **" большего размера
+  ALocalization.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Utils\ReadHelper.cpp(17,1): warning C4312: приведение типов: преобразование из "int" в "char *" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\ALocalization.cpp(18,58): warning C4312: приведение типов: преобразование из "int" в "int *" большего размера
+  Player.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Utils\ReadHelper.cpp(17,1): warning C4312: приведение типов: преобразование из "int" в "char *" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Game\Player.cpp(23,21): warning C4244: инициализация: преобразование "uintptr_t" в "int", возможна потеря данных
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Game\Player.cpp(27,49): warning C4244: =: преобразование "uintptr_t" в "int", возможна потеря данных
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Game\Player.cpp(49,18): warning C4244: инициализация: преобразование "uintptr_t" в "int", возможна потеря данных
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Game\Player.cpp(63,16): warning C4244: инициализация: преобразование "uintptr_t" в "int", возможна потеря данных
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Game\Player.cpp(64,17): warning C4244: инициализация: преобразование "uintptr_t" в "int", возможна потеря данных
+  IEngine.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Utils\ReadHelper.cpp(17,1): warning C4312: приведение типов: преобразование из "int" в "char *" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\IEngine.cpp(27,73): warning C4312: приведение типов: преобразование из "int" в "int *" большего размера
+  Particles.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Particles.cpp(36,90): warning C4312: приведение типов: преобразование из "int" в "void **" большего размера
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Engine\Particles.cpp(47,95): warning C4312: приведение типов: преобразование из "int" в "void **" большего размера
+  Source.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Source.cpp(5,10): fatal error C1083: Не удается открыть файл включение: detours.h: No such file or directory,
+  AAlienSteer.h
+  ReadHelper.cpp
+D:\_Projects\C++ SOURCE\repos\Barnyard SDK\Utils\ReadHelper.cpp(17,1): warning C4312: приведение типов: преобразование из "int" в "char *" большего размера
+  Vector4.cpp
+  Создание кода...

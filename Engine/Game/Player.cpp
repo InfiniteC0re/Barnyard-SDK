@@ -1,10 +1,11 @@
 #include "Player.h"
 #include <iostream>
 
+Game::Player::Player() {}
+
 Game::Player::Player(uintptr_t base)
 {
     _base = base;
-    Position = Vector3(0, 0, 0);
     LocationID = -1;
     WorldID = -1;
     GBucks = 0;
@@ -38,7 +39,7 @@ bool Game::Player::UpdateLocation()
 
 bool Game::Player::UpdatePosition()
 {
-    Position = ReadHelper::ReadVector3(_base, Offsets::Player::Position, 8);
+    Position = ReadHelper::ReadVector4(_base, Offsets::Player::Position, 8);
 
     return FALSE;
 }
@@ -84,7 +85,7 @@ bool Game::Player::UpdateStoryProgress()
 
 // Getters
 
-Vector3 Game::Player::getPosition()
+Vector4* Game::Player::getPosition()
 {
     return Position;
 }
