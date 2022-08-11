@@ -1,11 +1,10 @@
 #pragma once
-#include "ToshiClass.h"
-#include "Vectors.h"
+#include "TObject.h"
+#include "Math.h"
 
-class ASteerKinematics3D : public ToshiClass
+class ASteerKinematics3D : public TObject
 {
 public:
-    int* p_vTable;
     int* field_0x4;
     int* field_0x8;
     int* field_0xc;

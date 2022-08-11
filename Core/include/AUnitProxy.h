@@ -1,12 +1,11 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 
 class AUnitPlayer;
 
-class AUnitProxy : public ToshiClass
+class AUnitProxy : public TObject
 {
 public:
-    void* m_vTable;
     int field_0x4;
     int field_0x8;
     int field_0xc;

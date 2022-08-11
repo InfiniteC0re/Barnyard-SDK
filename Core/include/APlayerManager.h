@@ -1,8 +1,8 @@
 #pragma once
-#include "AUnitPlayer.h"
-#include "ToshiClass.h"
+#include "Units/AUnitPlayer.h"
+#include "TObject.h"
 
-class APlayerManager : public ToshiClass
+class APlayerManager : public TObject
 {
 public:
 	AUnitPlayer* GetCurPlayer(int index);

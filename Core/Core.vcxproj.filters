@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\AAlienSteer.cpp">
+    <ClCompile Include="include\Steer\AAlienSteer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="include\ACameraManager.cpp">
@@ -42,13 +42,13 @@
     <ClCompile Include="include\AUnitManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="include\AUnitPlayer.cpp">
+    <ClCompile Include="include\Units\AUnitPlayer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="include\AUnitProxy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="include\ToshiClass.cpp">
+    <ClCompile Include="include\TObject.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="include\ToshiUtils.cpp">
@@ -62,7 +62,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AAlienSteer.h">
+    <ClInclude Include="include\Steer\AAlienSteer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\ACameraManager.h">
@@ -89,13 +89,13 @@
     <ClInclude Include="include\AUnitManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\AUnitPlayer.h">
+    <ClInclude Include="include\Units\AUnitPlayer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\AUnitProxy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\ToshiClass.h">
+    <ClInclude Include="include\TObject.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\ToshiUtils.h">
@@ -104,10 +104,25 @@
     <ClInclude Include="include\TPString8.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="include\Vectors.h">
+    <ClInclude Include="include\Math.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="include\plugin.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InteractionActivities\AInteractionActivity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InteractionActivities\ACameraActivity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Units\AUnit.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Steer\ASteer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AAnimatableObject.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

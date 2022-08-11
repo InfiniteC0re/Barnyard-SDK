@@ -1,11 +1,10 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 #include "AUnitProxy.h"
 
-class AGTAStyleCameraHelper : public ToshiClass
+class AGTAStyleCameraHelper : public TObject
 {
 public:
-	void* m_vTable;
 	AUnitProxy* m_pProxy;
 };
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 
-class AInteractionComponent : public ToshiClass
+class AInteractionComponent : public TObject
 {
 
 };

@@ -8,6 +8,7 @@
 #include "include/ToshiUtils.h"
 #include "include/AUnitManager.h"
 #include "include/APlayerManager.h"
+#include "include/Steer/AAlienSteer.h"
 #include "include/ACameraManager.h"
 #include "include/AInteractionComponent.h"
 #include "include/APlayerControlComponent.h"
@@ -87,36 +88,40 @@ DWORD WINAPI MainThread(HMODULE hModule)
 	DetourTransactionCommit();
 
 	double controlledRot = 0;
-	ToshiClassInfo* AInteractionComponentInfo = ToshiClass::FindByName("AInteractionComponent", 0x0);
-	ToshiClassInfo* ASimplePlayerControlComponentInfo = ToshiClass::FindByName("APlayerControlComponent", 0x0);
+	TObjectInfo* AInteractionComponentInfo = TObject::Find("AInteractionComponent", 0x0);
+	TObjectInfo* ASimplePlayerControlComponentInfo = TObject::Find("APlayerControlComponent", 0x0);
 
 	while (CoopMod::Instance)
 	{
 		if (GetAsyncKeyState(VK_F1) & 1)
 		{
+			AUnitManager* pUnitManager = *g_AUnitManager;
 			AUnitPlayer* pPlayer = (*g_APlayerManager)->GetCurPlayer(0);
 
 			if (pPlayer != nullptr)
 			{
 				TPString8* pPlayerStr = TPString8::Find("player");
-				UnitTransform transform;
-				Vector4 pos = pPlayer->m_pSteer->m_pKinematics3D->m_vPosition;
-				Vector4 rot{ 1, 0, 0, 1 };
+				auto playerSteer = (AAlienSteer*)pPlayer->m_pSteer;
+				auto steerInfo = playerSteer->Info();
 
-				AUnitManager::SetUnitTransform(&transform, &pos, &rot, 0, 0, -1, true);
-				std::cout << pPlayerStr << std::endl;
-				std::cout << &transform << std::endl;
-				ToshiClass* pUnit = (*g_AUnitManager)->CreateSteerByName(&pPlayerStr, &transform);
-
-				if (strcmp(pUnit->GetVTable()->GetTClassInfo()->className, "AUnitPlayer") == 0)
+				if (steerInfo == (TObjectInfo*)0x007892f4 || steerInfo == (TObjectInfo*)0x00788ac4)
 				{
-					pSecondPlayer = TCAST(AUnitPlayer*, pUnit);
+					Vector4 rot{ 1, 0, 0, 1 };
+					auto transform = Mat43::Make(&playerSteer->m_pKinematics3D->m_vPosition, &rot, 0, 0, -1, true);
+
+					AUnit* pUnit = pUnitManager->CreateUnitByName(&pPlayerStr, &transform);
+
+					if (strcmp(pUnit->Info()->className, "AUnitPlayer") == 0)
+					{
+						pSecondPlayer = TCAST(AUnitPlayer*, pUnit);
+					}
 				}
 			}
 		}
 
 		if (pSecondPlayer != nullptr)
 		{
+			AAlienSteer* steer = (AAlienSteer*)pSecondPlayer->m_pSteer;
 			Vector4 speedVec{ 0, 0, 0, 0 };
 
 			if (GetAsyncKeyState(VK_NUMPAD8) < 0)
@@ -129,11 +134,14 @@ DWORD WINAPI MainThread(HMODULE hModule)
 				controlledRot += GetAsyncKeyState(VK_NUMPAD4) ? 0.07 : -0.07;
 
 				Vector4 rotVec{ cos(controlledRot), 0, sin(controlledRot), 1 };
-				pSecondPlayer->m_pSteer->m_pKinematics3D->m_qLastRotation = rotVec;
+				steer->m_pKinematics3D->m_qLastRotation = rotVec;
 			}
 
 			if (GetAsyncKeyState(VK_NUMPAD5) & 1)
-				pSecondPlayer->m_pSteer->Jump();
+			{
+				AAlienSteer* steer = (AAlienSteer*)pSecondPlayer->m_pSteer;
+				steer->Jump();
+			}
 
 			if (GetAsyncKeyState(VK_NUMPAD9) & 1)
 			{
@@ -160,7 +168,7 @@ DWORD WINAPI MainThread(HMODULE hModule)
 				}
 			}
 
-			pSecondPlayer->m_pSteer->SetMovementSpeed(&speedVec);
+			steer->SetMovementSpeed(&speedVec);
 		}
 
 		Sleep(25);

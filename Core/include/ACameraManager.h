@@ -1,11 +1,10 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 #include "AGTAStyleCameraHelper.h"
 
-class ACameraManager : public ToshiClass
+class ACameraManager : public TObject
 {
 public:
-    void* field_0x0;
     int field_0x4;
     int field_0x8;
     int field_0xc;

@@ -1,5 +1,5 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 
 enum AInteractionSequenceFlags {
     EMPTY = 0,
@@ -9,10 +9,9 @@ enum AInteractionSequenceFlags {
     UNK3 = 4
 };
 
-class AInteractionSequence : public ToshiClass
+class AInteractionSequence : public TObject
 {
 public:
-    void* field_0x0;
     int field_0x4;
     void* field_0x8;
     void* field_0xc;

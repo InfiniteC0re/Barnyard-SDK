@@ -18,46 +18,46 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\ToshiUtils.cpp">
+    <ClCompile Include="..\Core\include\ACameraManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AAlienSteer.cpp">
+    <ClCompile Include="..\Core\include\AGTAStyleCameraHelper.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\ACameraManager.cpp">
+    <ClCompile Include="..\Core\include\AInteractionComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AGTAStyleCameraHelper.cpp">
+    <ClCompile Include="..\Core\include\AInteractionSequence.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AInteractionComponent.cpp">
+    <ClCompile Include="..\Core\include\APlayerControlComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AInteractionSequence.cpp">
+    <ClCompile Include="..\Core\include\APlayerManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\APlayerControlComponent.cpp">
+    <ClCompile Include="..\Core\include\ASteerKinematics3D.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\APlayerManager.cpp">
+    <ClCompile Include="..\Core\include\AUnitManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\ASteerKinematics3D.cpp">
+    <ClCompile Include="..\Core\include\AUnitProxy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AUnitManager.cpp">
+    <ClCompile Include="..\Core\include\TObject.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AUnitPlayer.cpp">
+    <ClCompile Include="..\Core\include\ToshiUtils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\AUnitProxy.cpp">
+    <ClCompile Include="..\Core\include\TPString8.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\ToshiClass.cpp">
+    <ClCompile Include="..\Core\include\Units\AUnitPlayer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\include\TPString8.cpp">
+    <ClCompile Include="..\Core\include\Steer\AAlienSteer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

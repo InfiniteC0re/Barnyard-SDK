@@ -1,5 +1,8 @@
 #pragma once
 
+struct IDirect3DTexture8;
+typedef IDirect3DTexture8* LPDIRECT3DTEXTURE8;
+
 struct DDSTextureData
 {
 	int m_textureDataSize;
@@ -13,7 +16,7 @@ struct DDSTextureData
 	int m_unk4;
 	int m_unk5;
 	int m_unk6;
-	int m_unk7;
+	LPDIRECT3DTEXTURE8 m_texture;
 };
 
 class ToshiUtils

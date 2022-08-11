@@ -1,12 +1,11 @@
 #pragma once
-#include "ToshiClass.h"
+#include "TObject.h"
 #include "AInteractionSequence.h"
-#include "Vectors.h"
+#include "Math.h"
 
-class APlayerControlComponent : public ToshiClass
+class APlayerControlComponent : public TObject
 {
 public:
-    void* field_0x0;
     int field_0x4;
     int field_0x8;
     int field_0xc;

@@ -5,6 +5,9 @@
 #include "include/ToshiUtils.h"
 #include "include/plugin.h"
 
+#include <d3d8.h>
+#include <map>
+
 #define thisCallHook(fnName, addr, thisType, retType, ...) \
     typedef retType (__fastcall fnName)(thisType _this, DWORD _edx, __VA_ARGS__); \
     fnName* real##fnName = (fnName*)addr; \
@@ -37,6 +40,8 @@ struct TTLTexturesData
 	int count;
 	TextureInformation* pTexInfos;
 };
+
+std::map<std::string, DDSTextureData*> loadedTextures;
 
 stdCallHook(TFree, 0x006b4a20, bool, void* region)
 {
@@ -73,10 +78,12 @@ thisCallHook(GetDDSTextureFromTTL, 0x00615d20, int*, bool, TTLTexturesData* ttlS
 			DDSTextureData* texData = (DDSTextureData*)ToshiUtils::TAlloc(sizeof(DDSTextureData));
 			texData->m_unk1 = nullptr;
 			texData->m_unk2 = nullptr;
-			texData->m_unk7 = 0;
+			texData->m_texture = 0;
 
 			int nameLen = strlen(texInfo->m_texName);
-			char* filePath = new char[14 + nameLen + 1]();
+			char filePath[256];
+			filePath[0] = 0;
+
 			strcat(filePath, "Data\\Textures\\");
 			strncat(filePath, texInfo->m_texName, nameLen - 3);
 			strcat(filePath, "dds");
@@ -116,17 +123,18 @@ thisCallHook(GetDDSTextureFromTTL, 0x00615d20, int*, bool, TTLTexturesData* ttlS
 				}
 			}
 
-			// sets width, height and dds flags in texData and unpacks the texture
 			ToshiUtils::SaveDDSTexture(texData);
-			*(DDSTextureData**)(&pVector[i]) = texData;
 
-			delete[] filePath;
+			(texData->m_texture)->GetLevelCount();
+			*(DDSTextureData**)(&pVector[i].m_flag) = texData;
+
+			// save it to the map
+			loadedTextures[filePath] = texData;
 		}
 		else
 		{
-			*(DDSTextureData**)(&pVector[i]) = nullptr;
+			*(DDSTextureData**)(&pVector[i].m_flag) = nullptr;
 		}
-
 	}
 	
 	ToshiUtils::CloseTRB((int*)(_this + 8));
@@ -156,6 +164,35 @@ DWORD APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID reserved)
 	return reason == DLL_PROCESS_ATTACH;
 }
 
+DWORD WINAPI MainThread(HMODULE hModule)
+{
+	while (true)
+	{
+		if (GetAsyncKeyState(VK_F11) & 1)
+		{
+			for (auto const& x : loadedTextures)
+			{
+				const std::string& filepath = x.first;
+				const DDSTextureData* dds = x.second;
+				
+				D3DLOCKED_RECT lockedRect;
+				printf("Ptr: %p\n", dds->m_texture);
+				//(*dds->m_texture)->GetLevelCount();
+				//dds->m_texture->LockRect(0, &lockedRect, nullptr, 0);
+
+				/*unsigned short* data = (unsigned short*)lockedRect.pBits;
+				for (int i = 0; i < dds->m_textureDataSize; i++)
+				{
+					data[i] = 255;
+				}*/
+			}
+		}
+
+		Sleep(30);
+	}
+	return 0;
+}
+
 bool TTLMod::Initialize()
 {
 	DetourRestoreAfterWith();
@@ -164,6 +201,8 @@ bool TTLMod::Initialize()
 	Attach(TFree);
 	Attach(GetDDSTextureFromTTL);
 	DetourTransactionCommit();
+
+	CloseHandle(CreateThread(0, 0, (LPTHREAD_START_ROUTINE)MainThread, hModule, 0, 0));
 
 	return true;
 }
